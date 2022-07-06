@@ -1,8 +1,6 @@
 import random
 
 # Ask user if they have played before
-
-
 def statement_generator(statement, decoration):
     sides = decoration * 3
 
@@ -95,8 +93,9 @@ def intcheck(question, low=None, high=None, exit_code=None):
             continue
 
 # User chooses mode
-
 rounds_played = 0
+rounds_won = 0
+rounds_lost = 0
 
 mode = "regular"
 
@@ -138,21 +137,40 @@ while rounds_played < rounds and end_game == "no":
     # Asks for the answer
     # Checks if answer is correct or incorrect
 
-    ans = intcheck("Answer: ")
+    ans = intcheck("Answer: ", exit_code="xxx")
 
-    if ans =="xxx":
+    if ans == "xxx":
+        print()
+        print("!!!You chickened out!!!").
+
         break
 
-    if ans == (n1 + n2):
+    elif ans == (n1 + n2):
         print()
         print("!!!!!You Got It!!!!!")
+        rounds_won += 1
 
     else:
+        print()
         print("***Incorrect***")
 
 
+# ***** calculate game stats *****
+percent_win = rounds_won / rounds_played * 100
+percent_lost = rounds_lost / rounds_played * 100
 
+print()
 
+# displays game stats with % values to the nearest whole number
+print("***** Game Statistics *****")
+print("win: {}, ({:.0f}%)\nloss: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost, percent_lost,))
 
+# end of game statements
+print()
+print("***** END GAME SUMMARY *****")
+print()
+print("Won: {} \t\t Lost: {}".format(rounds_won, rounds_lost))
+print()
+print("!!Thanks for playing!!")
 
 
