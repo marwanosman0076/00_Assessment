@@ -1,5 +1,6 @@
 import random
 
+
 # Ask user if they have played before
 def statement_generator(statement, decoration):
     sides = decoration * 3
@@ -138,6 +139,7 @@ while rounds_played < rounds and end_game == "no":
     # Checks if answer is correct or incorrect
 
     ans = intcheck("Answer: ", exit_code="xxx")
+    final_ans = n1 + n2
 
     if ans == "xxx":
         print()
@@ -145,7 +147,7 @@ while rounds_played < rounds and end_game == "no":
 
         break
 
-    elif ans == (n1 + n2):
+    elif ans == final_ans:
         print()
         print("!!!!!You Got It!!!!!")
         rounds_won += 1
@@ -153,6 +155,7 @@ while rounds_played < rounds and end_game == "no":
     else:
         print()
         print("***Incorrect***")
+        print("The correct answer was {}".format(final_ans))
         rounds_lost += 1
 
 # ***** calculate game stats *****
@@ -174,5 +177,3 @@ print()
 print("Won: {} \t\t Lost: {}".format(rounds_won, rounds_lost))
 print()
 print("!!Thanks for playing!!")
-
-
