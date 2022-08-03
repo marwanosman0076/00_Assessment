@@ -88,36 +88,41 @@ def intcheck(question, low=None, high=None, exit_code=None):
             print(error)
             continue
 
-
-# User chooses mode
-rounds_played = 0
-rounds_won = 0
-rounds_lost = 0
-
-mode = "regular"
-
+# Statement generator
 print()
 statement_generator("Welcome to Basic Facts", "*")
+
 print()
 
+
+# Makes sure that the asnwer to the played before question is either yes, y, no, n using yes_no checker
 played_before = yes_no('Have you played this game before? ')
 
+
+# checking if user have played before
 if played_before == 'no':
     print()
     instructions()
 
-print()
 
-rounds = intcheck(
-    "How many rounds do you want to play (Press enter for infinite mode):", 1, exit_code="")
+# Resets rounds played, rounds lost and rounds won before the game
+rounds_played = 0
+rounds_won = 0
+rounds_lost = 0
 
+
+# Mode is regular
+mode = "regular"
+
+
+# Asks user for number of rounds to play or enter for infinite mode
+rounds = intcheck("How many rounds do you want to play (Press enter for infinite mode):", 1, exit_code="")
+
+
+# Ask user for the operation they want to use while checking the answer is either 1 or 2
 print()
 print("Choose your operator")
-operation = intcheck("Addition-1     Multiplication-2")
-
-if rounds == "":
-    mode = "infinite"
-    rounds = 100000
+operation = intcheck("Addition-1     Multiplication-2  : ", low=1, high=2)
 
 
 # user enters range of numbers here
@@ -126,17 +131,24 @@ low_num = intcheck("Enter the Lowest number: ", low=0)
 print()
 high_num = intcheck("Enter Highest number: ", low=low_num)
 
+# if user presses enter, mode becomes infinite
+if rounds == "":
+    mode = "infinite"
+    rounds = 10
+
 
 # rounds loop starts here
 end_game = "no"
 while rounds_played < rounds and end_game == "no":
 
+    # checks if mode is regular or infinite and creates heading
     if mode == "infinite":
         heading = "----- Round {} -----".format(rounds_played + 1)
+        rounds += 1
     else:
-        heading = "----- Round {} of {} ------".format(rounds_played + 1,
-                                                       rounds)
+        heading = "----- Round {} of {} ------".format(rounds_played + 1, rounds)
 
+    # prints heading
     print()
     print(heading)
 
@@ -144,7 +156,7 @@ while rounds_played < rounds and end_game == "no":
     n1 = random.randint(low_num, high_num)
     n2 = random.randint(low_num, high_num)
 
-    # Print question
+    # Print question using correct operation
     if operation == 1:
         print()
         print("{} + {} = ".format(n1, n2))
@@ -154,7 +166,7 @@ while rounds_played < rounds and end_game == "no":
         print("{} x {} = ".format(n1, n2))
 
     # Asks for the answer
-    # Checks if answer is correct or incorrect
+    # Checks if answer is correct or incorrect based on operation chosen by the user
     ans = intcheck("Answer: ", exit_code="xxx")
 
     if ans == "xxx":
@@ -163,7 +175,7 @@ while rounds_played < rounds and end_game == "no":
         break
 
     if operation == 1:
-        operation_symbol = "+"
+        operation_symbol = "Addition(+)"
         if ans == (n1 + n2):
             print()
             print("!!!!!You Got It!!!!!")
@@ -175,7 +187,7 @@ while rounds_played < rounds and end_game == "no":
             rounds_lost += 1
 
     if operation == 2:
-        operation_symbol = "x"
+        operation_symbol = "multiplication(x)"
         if ans == (n1 * n2):
             print()
             print("!!!!!You Got It!!!!!")
@@ -186,10 +198,12 @@ while rounds_played < rounds and end_game == "no":
             print("***Incorrect***")
             print("The correct answer was {}".format(n1 * n2))
             rounds_lost += 1
+    # Rounds played increases by one
     rounds_played += 1
 
 
 # ***** calculate game stats *****
+# Create percentages of games won/games lost based on rounds won/rounds lost divided by rounds played times 100
 percent_win = rounds_won / rounds_played * 100
 percent_lost = rounds_lost / rounds_played * 100
 
@@ -203,10 +217,10 @@ print("win: {}, ({:.0f}%)\nloss: {}, ({:.0f}%)".format(rounds_won, percent_win, 
 print()
 print("***** END GAME SUMMARY *****")
 print()
-print("You choose {} as your operator".format(operation))
+print("You choose {} as your operator".format(operation_symbol))
 print()
 print("You played {} rounds".format(rounds_played))
 print()
 print("Won: {} \t\t Lost: {}".format(rounds_won, rounds_lost))
 print()
-
+print("!!!Thanks for playing!!!")

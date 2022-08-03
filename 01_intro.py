@@ -9,7 +9,7 @@ def yes_no(question):
         elif response == 'no' or response == 'n':
             return "no"
         else:
-            print('please answer yes / no')
+            print('please answer yes / no\n')
 
 
 def instructions():
