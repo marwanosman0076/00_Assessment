@@ -1,3 +1,7 @@
+rounds_played = 0
+rounds_won = 0
+rounds_lost = 0
+
 # ***** calculate game stats *****
 percent_win = rounds_won / rounds_played * 100
 percent_lost = rounds_lost / rounds_played * 100
@@ -12,7 +16,7 @@ print("win: {}, ({:.0f}%)\nloss: {}, ({:.0f}%)".format(rounds_won, percent_win, 
 print()
 print("***** END GAME SUMMARY *****")
 print()
-print("You choose {} as your operator".format(operation_symbol))
+print("You choose {} as your operator".format(1, 2))
 print()
 print("You played {} rounds".format(rounds_played))
 print()

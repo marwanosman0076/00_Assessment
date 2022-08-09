@@ -203,24 +203,33 @@ while rounds_played < rounds and end_game == "no":
 
 
 # ***** calculate game stats *****
+# if rounds played is zero, print "You have no game history" else:
 # Create percentages of games won/games lost based on rounds won/rounds lost divided by rounds played times 100
-percent_win = rounds_won / rounds_played * 100
-percent_lost = rounds_lost / rounds_played * 100
+if rounds_played == 0:
+    print()
+    print("You have no game history")
+else:
+    percent_win = rounds_won / rounds_played * 100
+    percent_lost = rounds_lost / rounds_played * 100
 
-print()
+    print()
 
-# displays game stats with % values to the nearest whole number
-print("***** Game Statistics *****")
-print("win: {}, ({:.0f}%)\nloss: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost, percent_lost,))
+    # displays game stats with % values to the nearest whole number
+    print("***** Game Statistics *****")
+    print(
+        "Correct: {}, ({:.0f}%)\nIncorrect: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost, percent_lost, ))
 
-# end of game statements
-print()
-print("***** END GAME SUMMARY *****")
-print()
-print("You choose {} as your operator".format(operation_symbol))
-print()
-print("You played {} rounds".format(rounds_played))
-print()
-print("Won: {} \t\t Lost: {}".format(rounds_won, rounds_lost))
+    # end of game statements
+    print()
+    print("***** END GAME SUMMARY *****")
+    print()
+    print("You choose {} as your operator".format(operation_symbol))
+    print()
+    print("You played {} rounds".format(rounds_played))
+    print()
+    print("Correct: {} \t\t Incorrect: {}".format(rounds_won, rounds_lost))
+
 print()
 print("!!!Thanks for playing!!!")
+
+
